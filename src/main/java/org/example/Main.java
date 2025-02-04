@@ -9,6 +9,5 @@ public class Main {
             userRequest = userInput.getUserInput();
             if (userRequest.equalsIgnoreCase("exit")){break;}
         }
-
     }
 }
