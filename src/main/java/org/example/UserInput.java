@@ -10,7 +10,7 @@ public class UserInput {
     }
 
     public String getUserInput(){
-        System.out.println("Введите ваш запрос:");
+        System.out.println("Введите ваш запрос: (exit - если хотите выйти)");
         return scanner.nextLine();
     }
 }
