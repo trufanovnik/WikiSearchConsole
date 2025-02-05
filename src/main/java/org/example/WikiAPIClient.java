@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -41,18 +42,22 @@ public class WikiAPIClient {
         }
     }
 
-    protected static void readResponse(){
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            response = new StringBuilder();
-            while ((inputLine = reader.readLine()) != null) {
-                response.append(inputLine);
-            }
-            reader.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    protected static void readResponse() throws IOException {
+        if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                response = new StringBuilder();
+                while ((inputLine = reader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
 
+            }
+        }else {
+            System.err.println("GET запрос недоступен");
         }
     }
 
