@@ -10,6 +10,7 @@ public class Main {
             if (userRequest.equalsIgnoreCase("exit")){break;}
             WikiAPIClient.setConnection(userRequest);
             WikiAPIClient.readResponse();
+            WikiAPIClient.showResponse();
         }
     }
 }

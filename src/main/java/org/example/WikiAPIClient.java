@@ -1,5 +1,10 @@
 package org.example;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,5 +54,13 @@ public class WikiAPIClient {
             throw new RuntimeException(e);
 
         }
+    }
+
+    protected static void showResponse(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonElement jsonElement = JsonParser.parseString(response.toString());
+        String prettyJsonString = gson.toJson(jsonElement);
+
+        System.out.println(prettyJsonString);
     }
 }
