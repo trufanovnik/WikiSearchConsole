@@ -8,6 +8,8 @@ public class Main {
         while (true){
             userRequest = userInput.getUserInput();
             if (userRequest.equalsIgnoreCase("exit")){break;}
+            WikiAPIClient.setConnection(userRequest);
+            WikiAPIClient.readResponse();
         }
     }
 }
